@@ -1,4 +1,9 @@
+// Animate tap button when clicked
 document.getElementById("tap-button").addEventListener("click", function() {
+    this.style.transform = "translate(-50%, -50%) scale(0.9)";
+    setTimeout(() => {
+        this.style.transform = "translate(-50%, -50%) scale(1)";
+    }, 100);
     console.log("Tapped!");
 });
 
