@@ -1,28 +1,20 @@
 body {
-    background-color: #2D2A4A;
+    background: linear-gradient(-45deg, #2D2A4A, #6A5ACD, #2D2A4A, #6A5ACD);
+    background-size: 400% 400%;
+    animation: backgroundAnimation 10s ease infinite;
     color: white;
     font-family: 'Roboto', sans-serif;
     text-align: center;
 }
 
-#connect-wallet {
-    background-color: navy;
-    color: white;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
+/* Background Animation */
+@keyframes backgroundAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-#buy-tap-options button, #power-ups button {
-    margin: 10px;
-    padding: 10px;
-    background-color: #6A5ACD;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-/* MONAD "M" Tap Button */
+/* Monad "M" Tap Button */
 #tap-button {
     width: 150px;
     height: 150px;
@@ -37,4 +29,25 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    transition: transform 0.1s ease-in-out;
+}
+
+/* Tap Button Animation */
+#tap-button:active {
+    transform: translate(-50%, -50%) scale(0.9);
+}
+
+/* Button Hover Effects */
+#connect-wallet, #buy-tap-options button, #power-ups button {
+    margin: 10px;
+    padding: 10px;
+    background-color: #6A5ACD;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+#connect-wallet:hover, #buy-tap-options button:hover, #power-ups button:hover {
+    background-color: #8A75FF;
 }
