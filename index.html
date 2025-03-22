@@ -5,27 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tap to MON</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.55.2/phaser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.7.0/dist/web3.min.js"></script>
     <script defer src="game.js"></script>
 </head>
 <body>
+    <!-- Leaderboard Popup -->
+    <div id="leaderboard-popup" class="hidden">
+        <div id="leaderboard-content">
+            <h2>Top Tappers</h2>
+            <ul id="leaderboard-list"></ul>
+            <button onclick="toggleLeaderboard()">Close</button>
+        </div>
+    </div>
+
+    <!-- Title and Wallet -->
+    <div id="top-section">
+        <h1>Tap to MON</h1>
+        <button id="connect-wallet">Connect Wallet</button>
+        <span id="wallet-address"></span>
+    </div>
+
+    <!-- Game Container -->
     <div id="game-container">
-        <button id="tap-button">M</button>
+        <div id="m-frame">
+            <button id="tap-button">M</button>
+            <canvas id="particle-canvas" width="200" height="200"></canvas>
+        </div>
+        <div id="stats-display">
+            <div class="stat">
+                <span>Total Taps</span>
+                <span id="tap-display">0</span>
+            </div>
+            <div class="stat">
+                <span>Auto-Tapper</span>
+                <span id="auto-tapper-display">0</span>
+            </div>
+            <div class="stat">
+                <span>MON Earned</span>
+                <span id="mon-earned">0</span>
+            </div>
+        </div>
+        <div id="action-buttons">
+            <button onclick="buyTaps(50000)">Buy Tap</button>
+            <button onclick="activateAutoTapper()">Auto-Tapper</button>
+            <button onclick="activateDoubleTap()">Double Tap</button>
+        </div>
     </div>
 
-    <button id="connect-wallet">Connect Wallet</button>
-
-    <div id="buy-tap-options">
-        <button onclick="buyTaps(50000)">Buy 50K Taps</button>
-        <button onclick="buyTaps(100000)">Buy 100K Taps</button>
-        <button onclick="buyTaps(250000)">Buy 250K Taps</button>
-    </div>
-
-    <div id="power-ups">
-        <button onclick="activateAutoTapper()">Auto-Tapper</button>
-        <button onclick="activateDoubleTap()">Double Tap</button>
-        <button onclick="checkLuckyTap()">Lucky Tap</button>
+    <!-- Additional Features -->
+    <div id="extra-buttons">
+        <button onclick="claimDailyReward()">🎁 Daily Reward</button>
+        <button onclick="checkLuckyTap()">⚡ Lucky Tap</button>
         <button onclick="activateReferral()">Referral Bonus</button>
+        <button onclick="toggleLeaderboard()">🏆 Leaderboard</button>
+        <button id="share-button">Share Score</button>
+        <button id="theme-toggle">🌙</button>
+    </div>
+
+    <!-- Lucky Tap Popup -->
+    <div id="lucky-tap-popup" class="hidden">
+        <div id="lucky-tap-content">
+            <h2>You Won Extra Taps!</h2>
+            <p id="lucky-tap-amount"></p>
+            <button onclick="closeLuckyTapPopup()">Claim</button>
+        </div>
     </div>
 </body>
 </html>
