@@ -1,61 +1,24 @@
-const config = {
-    type: Phaser.AUTO,
-    width: 800,
-    height: 600,
-    backgroundColor: "#2D2A4A",
-    scene: {
-        preload: preload,
-        create: create,
-        update: update
-    }
-};
+document.getElementById("tap-button").addEventListener("click", function() {
+    console.log("Tapped!");
+});
 
-let game = new Phaser.Game(config);
-
-function preload() {
-    // Create the Monad "M" logo using an SVG Data URL
-    const monadLogoSVG = `
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="48" stroke="white" stroke-width="4" fill="purple"/>
-            <text x="50%" y="55%" font-size="40" font-weight="bold" fill="white" text-anchor="middle" font-family="Arial">M</text>
-        </svg>
-    `;
-    const monadLogoDataURL = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(monadLogoSVG);
-    this.textures.addBase64('tapButton', monadLogoDataURL);
+// Placeholder functions for power-ups & buy taps
+function buyTaps(amount) {
+    console.log(`Buying ${amount} taps...`);
 }
 
-function create() {
-    let tapButton = this.add.image(400, 300, 'tapButton').setInteractive();
-    tapButton.setScale(2); // Make the logo bigger
-    tapButton.on('pointerdown', () => {
-        console.log('Tapped!');
-    });
+function activateAutoTapper() {
+    console.log("Auto-Tapper Activated!");
 }
 
-function update() {}const config = {
-    type: Phaser.AUTO,
-    width: 800,
-    height: 600,
-    backgroundColor: "#2D2A4A",
-    scene: {
-        preload: preload,
-        create: create,
-        update: update
-    }
-};
-
-let game = new Phaser.Game(config);
-
-function preload() {
-    this.load.image('tapButton', 'monad-logo.png'); // Make sure the file exists in the repo
+function activateDoubleTap() {
+    console.log("Double Tap Activated!");
 }
 
-function create() {
-    let tapButton = this.add.image(400, 300, 'tapButton').setInteractive();
-    tapButton.setScale(0.5); // Adjust the size if needed
-    tapButton.on('pointerdown', () => {
-        console.log('Tapped!');
-    });
+function checkLuckyTap() {
+    console.log("Lucky Tap Checked!");
 }
 
-function update() {}
+function activateReferral() {
+    console.log("Referral Bonus Activated!");
+}
