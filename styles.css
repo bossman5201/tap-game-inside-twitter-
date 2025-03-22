@@ -1,53 +1,284 @@
 body {
-    background: linear-gradient(-45deg, #2D2A4A, #6A5ACD, #2D2A4A, #6A5ACD);
-    background-size: 400% 400%;
-    animation: backgroundAnimation 10s ease infinite;
+    background-color: #4B2E83; /* Solid purple from the image */
     color: white;
     font-family: 'Roboto', sans-serif;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: background-color 0.5s ease;
 }
 
-/* Background Animation */
-@keyframes backgroundAnimation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+body.light-mode {
+    background-color: #E6E6FA;
+    color: #333;
 }
 
-/* Monad "M" Tap Button */
+/* Top Section */
+#top-section {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+#top-section h1 {
+    font-size: 36px;
+    font-weight: bold;
+    margin: 0;
+}
+
+#connect-wallet {
+    background-color: #3A3D9A;
+    color: white;
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#connect-wallet:hover {
+    background-color: #5A5DBA;
+}
+
+#wallet-address {
+    font-size: 14px;
+    padding: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+body.light-mode #wallet-address {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Game Container */
+#game-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* M Frame */
+#m-frame {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    background-color: #6A5ACD;
+    border: 10px solid white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #tap-button {
-    width: 150px;
-    height: 150px;
-    font-size: 50px;
+    width: 200px;
+    height: 200px;
+    font-size: 100px;
     font-weight: bold;
     color: white;
-    background-color: purple;
-    border: 4px solid white;
-    border-radius: 50%;
+    background-color: #6A5ACD;
+    border: none;
     cursor: pointer;
+    transition: transform 0.1s ease-in-out, box-shadow 0.2s ease;
+    animation: pulse 2s infinite;
+}
+
+#tap-button:active {
+    transform: scale(0.9);
+    box-shadow: 0 0 20px rgba(138, 117, 255, 0.8);
+}
+
+body.light-mode #tap-button {
+    background-color: #4682B4;
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Particle Canvas */
+#particle-canvas {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    transition: transform 0.1s ease-in-out;
+    pointer-events: none;
+    z-index: 0;
 }
 
-/* Tap Button Animation */
-#tap-button:active {
-    transform: translate(-50%, -50%) scale(0.9);
+/* Stats Display */
+#stats-display {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 10px;
 }
 
-/* Button Hover Effects */
-#connect-wallet, #buy-tap-options button, #power-ups button {
-    margin: 10px;
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat span:first-child {
+    font-size: 14px;
+    color: #ccc;
+}
+
+.stat span:last-child {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Action Buttons */
+#action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+#action-buttons button {
+    width: 100px;
     padding: 10px;
     background-color: #6A5ACD;
     color: white;
     border: none;
+    border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    animation: float 2s ease-in-out infinite;
 }
 
-#connect-wallet:hover, #buy-tap-options button:hover, #power-ups button:hover {
+#action-buttons button:hover {
     background-color: #8A75FF;
+    transform: translateY(-5px);
+}
+
+body.light-mode #action-buttons button {
+    background-color: #4682B4;
+}
+
+body.light-mode #action-buttons button:hover {
+    background-color: #5A9BD4;
+}
+
+/* Extra Buttons */
+#extra-buttons {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+#extra-buttons button {
+    padding: 10px 20px;
+    background-color: #6A5ACD;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    animation: float 2s ease-in-out infinite;
+}
+
+#extra-buttons button:hover {
+    background-color: #8A75FF;
+    transform: translateY(-5px);
+}
+
+body.light-mode #extra-buttons button {
+    background-color: #4682B4;
+}
+
+body.light-mode #extra-buttons button:hover {
+    background-color: #5A9BD4;
+}
+
+/* Floating Animation */
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+/* Leaderboard Popup */
+#leaderboard-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+#leaderboard-content {
+    background-color: #2D2A4A;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: left;
+}
+
+body.light-mode #leaderboard-content {
+    background-color: #E6E6FA;
+    color: #333;
+}
+
+#leaderboard-list {
+    list-style: none;
+    padding: 0;
+    font-size: 16px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Lucky Tap Popup */
+#lucky-tap-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+#lucky-tap-content {
+    background-color: #2D2A4A;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+}
+
+body.light-mode #lucky-tap-content {
+    background-color: #E6E6FA;
+    color: #333;
 }
